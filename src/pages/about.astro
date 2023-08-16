@@ -1,7 +1,5 @@
 ---
-import '../styles/global.css';
-import Navigation from "../components/Navigation.astro";
-import Footer from '../components/Footer.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 //Learned that these variables provide the values within the HTML // 
 const pageTitle = "About Me";
 const identity = {
@@ -22,34 +20,11 @@ const skillColor ="navy";
 const fontWeight ="bold";
 const textCase ="uppercase";
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-        <style define:vars={{skillColor, fontWeight, textCase}}>
-            h1 {
-                color: purple;
-                font-size: 4rem;
-            
-            }
-            .skill {
-                color: var(--skillColor);
-                font-weight: bold;
-            }
-        </style>
-	</head>
-	<body>
-        <Navigation />
-		<h1>{pageTitle}</h1>
+<BaseLayout pageTitle={pageTitle}>
         <p>Hello, I'm Andrew! 
             Welcome to my blog. I'm an advocate for business and technology, passionate about helping others understand and find solutions within both fields.
             Through my insights and practical guidance, I aim to bridge the gap between business strategy and technological implementation.
-        </p>
-           
+        </p>     
         <p>Join me as we explore the transformative power of technology in driving growth and innovation. Let's unlock the full potential of business and technology together!</p>
         <p>Here are a few facts about me:</p>
         <ul>
@@ -58,7 +33,7 @@ const textCase ="uppercase";
             {identity.hobbies.length >= 2 &&
               <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}</li>
             }
-          </ul>
+        </ul>
           <p>My skills are:</p>
           <ul>
             {skills.map((skill) => <li class="skill">{skill}</li>)}
@@ -66,8 +41,4 @@ const textCase ="uppercase";
           {happy && <p>I am happy to be learning Astro!</p>}
           {finished && <p>I finished this tutorial</p>}
           {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p> }
-             
-        
-          <Footer />
-	</body>
-</html>
+       </BaseLayout>            
